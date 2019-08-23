@@ -1,0 +1,23 @@
+version: '3.6'
+volumes:
+  node_modules:
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ../docker/api/local/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - ./env/api/env.local
+    volumes:
+      - ./api:/usr/src:cached
+    working_dir: /usr/src
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
