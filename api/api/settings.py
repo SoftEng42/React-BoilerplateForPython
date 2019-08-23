@@ -113,11 +113,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = "/usr/src/django_static"
+STATIC_URL = "/django_static/"
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
+MEDIA_ROOT = "/usr/src"
+MEDIA_URL = "api/media/"
 
 DATABASES = {
     "default": {
