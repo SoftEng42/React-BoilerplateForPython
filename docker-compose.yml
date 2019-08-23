@@ -21,3 +21,15 @@ services:
       - 8000:8000
     depends_on:
       - db
+
+  client:
+    build:
+      context: ./client
+      dockerfile: ../docker/client/local/Dockerfile
+    working_dir: /usr/src
+    volumes:
+      - ./client:/usr/src:cached
+      - node_modules:/usr/src/node_modules/
+    command: yarn start
+    ports:
+      - 3000:3000
