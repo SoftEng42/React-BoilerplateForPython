@@ -21,3 +21,41 @@ test-api:
   script:
     - python manage.py test
 
+
+test-front:
+
+  stage: test
+
+  image: node:10
+
+  cache:
+    untracked: true
+    key: one-key-to-rule-them-all
+
+  before_script:
+    - cd client
+    - yarn install
+
+  script:
+    - yarn test --coverage
+
+
+build-front:
+  stage: build
+
+  image: node:10
+
+  cache:
+    untracked: true
+    key: one-key-to-rule-them-all
+
+  before_script:
+    - cd client
+    - yarn install
+
+  script:
+    - yarn build
+
+  artifacts:
+    paths:
+      - client/build
