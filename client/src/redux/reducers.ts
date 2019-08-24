@@ -1,11 +1,6 @@
-import { State, Action } from './types'
+import { combineReducers } from 'redux'
+import { routerReducer } from './Router/Router.reducer';
 
-const initialState: State = {
-}
-
-export function rootReducer(state: State = initialState, action: Action): State {
- 
-  // For now, don't handle any actions
-  // and just return the state given to us.
-  return state
-}
+export const rootReducer = combineReducers({
+  router: routerReducer
+})
