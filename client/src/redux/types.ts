@@ -1,4 +1,8 @@
-export interface State {}
+import { UserAction, UserState } from "./User/User.types";
 
-export interface Action {}
+export interface State {
+  userState: UserState
+}
+
+export type Action = UserAction
 
