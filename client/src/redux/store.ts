@@ -5,6 +5,7 @@ import { rootReducer } from './reducers';
 import { initialState } from './state';
 
 import { routerMiddleware } from './Router/Router.middleware'
+import { userSaga } from './User/User.saga';
 
 // Create a middleware for intercepting actions to execute sagas
 const sagaMiddleware = createSagaMiddleware();
@@ -22,3 +23,5 @@ export const store = createStore(
   initialState,
   composeEnhancers(applyMiddleware(routerMiddleware, sagaMiddleware)),
 );
+
+sagaMiddleware.run(userSaga);
