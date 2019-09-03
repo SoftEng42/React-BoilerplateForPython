@@ -17,15 +17,20 @@ test/client:
 	cd client && yarn test:coverage --watchAll=false
 
 lint/api:
-	docker-compose run api pylint arrago
+	docker-compose run api pylint api
 
 lint/client:
 	docker-compose run client yarn lint
 
 format/python:
-	docker-compose exec api black arrago --exclude arrago/api/migrations
+	docker-compose exec api black api --exclude api/api/migrations
 
 test/ci:
 	make lint/api
 	make test/api 
 	cd client && yarn test:coverage --watchAll=false --ci
+
+recreate:
+	docker-compose down
+	docker volume rm django-react-boilerplate_node_modules
+	$(MAKE) start
